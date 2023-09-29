@@ -1,6 +1,6 @@
 # SnapPager
 
-SnapPager is a Swift library for SwiftUI 5 (iOS 17) and newer that simplifies the implementation of a horizontal paging scroll view with snapping behavior. It's perfect for creating carousels, image galleries, or any other horizontal scrolling view where you want items to snap neatly into place as the user scrolls.
+SnapPager is a SwiftUI 5 library for iOS 17 (and newer) that simplifies the implementation of a horizontal paging scroll view with snapping behavior. It's perfect for creating carousels, image galleries, or any other horizontal scrolling view where you want items to snap neatly into place as the user scrolls.
 
 ## Features
 
