@@ -13,8 +13,8 @@ SnapPager is a SwiftUI 5 library for iOS 17 (and newer) that simplifies the impl
 
 ## Installation
 
-1. **Swift Package Manager:** XCode > File > Add package Dependencies... > copy/paste this repo in the search bar
-```ruby
+1. **Swift Package Manager:** XCode > File > Add package Dependencies... > copy/paste this repo in the search
+```html
 https://github.com/MaximeFILIPPI/SnapPagerCarousel
 ```
 
