@@ -22,6 +22,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     
     var content: (T) -> Content
     
+    @State private var realSelection: T?
     
     @State private var scrollPosition: CGPoint = .zero
     
@@ -49,6 +50,11 @@ public struct SnapPager <Content: View, T: Hashable>: View {
         self.itemSpacing = abs(itemsMargin)
         self.content = content
         self.prefKeyScroller = prefKeyScroller ?? "snapPager"
+        
+        if selection.wrappedValue != nil
+        {
+            self.realSelection = selection.wrappedValue!
+        }
     }
     
     
@@ -94,18 +100,22 @@ public struct SnapPager <Content: View, T: Hashable>: View {
                 .safeAreaPadding(.horizontal, edgesOverlap)
                 .coordinateSpace(name: prefKeyScroller)
                 .scrollTargetBehavior(.viewAligned)
-                .scrollPosition(id: $selection)
+                .scrollPosition(id: $realSelection)
             }
             
         }
-        .onChange(of: currentIndex) { oldValue, newValue in
+        .onChange(of: selection) { oldValue, newValue in
             
             if !isScrolling && currentIndex < items.count
             {
                 withAnimation {
-                    self.selection = items[currentIndex]
+                    self.realSelection = newValue
                 }
             }
+        }
+        .onChange(of: currentIndex) { oldValue, newValue in
+            
+            self.selection = items[currentIndex]
             
         }
         .onAppear {
