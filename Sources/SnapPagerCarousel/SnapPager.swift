@@ -50,7 +50,6 @@ public struct SnapPager <Content: View, T: Hashable>: View {
         self.edgesOverlap = edgesOverlap
         self.content = content
         self.prefKeyScroller = prefKeyScroller ?? "snapPager"
-        self.isScrolling = isScrolling
     }
     
     
