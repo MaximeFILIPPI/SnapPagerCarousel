@@ -31,11 +31,27 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     @State private var contentSize: CGSize = .zero
     
     
-    @State var prefKeyScroller: String = "snapPager"
+    @State private var prefKeyScroller: String = "snapPager"
     
     
-    @State var isScrolling: Bool = false
+    @State private var isScrolling: Bool = false
     
+    
+    public init(items: Binding<[T]>,
+                selection: Binding<T?>,
+                currentIndex: Binding<Int>,
+                edgesOverlap: CGFloat,
+                content: @escaping (T) -> Content,
+                prefKeyScroller: String? = nil)
+    {
+        self._items = items
+        self._selection = selection
+        self._currentIndex = currentIndex
+        self.edgesOverlap = edgesOverlap
+        self.content = content
+        self.prefKeyScroller = prefKeyScroller ?? "snapPager"
+        self.isScrolling = isScrolling
+    }
     
     
     public var body: some View {
@@ -160,3 +176,5 @@ struct SnapPagerPreferenceKey: PreferenceKey
     static var defaultValue: CGPoint = .zero
     static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) { }
 }
+
+
