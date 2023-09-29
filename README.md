@@ -14,7 +14,7 @@ SnapPager is a Swift library for SwiftUI 5 (iOS 17) and newer that simplifies th
 ## Installation
 
 1. **Swift Package Manager:** XCode > File > Add package Dependencies... > copy/paste this repo in the search bar
-```swift
+```ruby
 https://github.com/MaximeFILIPPI/SnapPagerCarousel
 ```
 
@@ -27,21 +27,23 @@ Here's a basic example of how to use SnapPager in your SwiftUI view:
 
 ```swift
 import SwiftUI
-import SnapPager
+import SnapPagerCarousel // <- Import
 
 struct ContentView: View {
     
-    @State var carouselItems: [String] = []
-    @State var carouselSelection: String?
-    @State var carouselIndex: Int = 0
+    @State var carouselItems: [String] = [] // <- Your items (can be anything Hashable)
+    @State var carouselSelection: String?   // <- Should match your items type
+    @State var carouselIndex: Int = 0       // <- To keep track of the page index
     
     var body: some View {
         
         SnapPager(items: $carouselItems,
                   selection: $carouselSelection,
                   currentIndex: $carouselIndex) { item in
-            // Your content for each page here
+                  
+            // Your custom content to display for each page here
             Text(item)
+            
         }
         
     }
@@ -51,7 +53,9 @@ struct ContentView: View {
 }
 ```
 
-In this example, `carouselItems` is an array of items that you want to display in the pager. The `SnapPager` view automatically handles the horizontal paging and snapping behavior for you. You can customize the appearance of each page by providing a content closure.
+In this example, `carouselItems` is an array of String that you want to display in the pager. 
+The `SnapPager` view automatically handles the horizontal paging and snapping behavior for you. 
+You can customize the appearance of each page by providing a content closure.
 
 
 ## Customization
