@@ -4,9 +4,9 @@
 import SwiftUI
 
 
-struct SnapPagerCarousel <Content: View, T: Hashable>: View {
+struct SnapPager <Content: View, T: Hashable>: View {
     
-    private let TAG: String = "SnapPagerCarousel ::"
+    private let TAG: String = "SnapPager ::"
     
     
     @Binding var items: [T]
@@ -31,7 +31,7 @@ struct SnapPagerCarousel <Content: View, T: Hashable>: View {
     @State private var contentSize: CGSize = .zero
     
     
-    @State var prefKeyScroller: String = "snapCarousel"
+    @State var prefKeyScroller: String = "snapPager"
     
     
     @State var isScrolling: Bool = false
@@ -68,10 +68,10 @@ struct SnapPagerCarousel <Content: View, T: Hashable>: View {
                     .scrollTargetLayout()
                     .background(GeometryReader { geometry in
                         Color.clear
-                            .preference(key: SnapPagerCarouselPreferenceKey.self, value: geometry.frame(in: .named(prefKeyScroller)).origin)
+                            .preference(key: SnapPagerPreferenceKey.self, value: geometry.frame(in: .named(prefKeyScroller)).origin)
                         
                     })
-                    .onPreferenceChange(SnapPagerCarouselPreferenceKey.self) { value in
+                    .onPreferenceChange(SnapPagerPreferenceKey.self) { value in
                         self.scrollPosition = value
                         self.readPositionScrollView()
                     }
@@ -155,7 +155,7 @@ struct SnapPagerCarousel <Content: View, T: Hashable>: View {
 }
 
 
-struct SnapPagerCarouselPreferenceKey: PreferenceKey
+struct SnapPagerPreferenceKey: PreferenceKey
 {
     static var defaultValue: CGPoint = .zero
     static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) { }
