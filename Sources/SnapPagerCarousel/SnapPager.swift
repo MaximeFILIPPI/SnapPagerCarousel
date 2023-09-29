@@ -4,7 +4,7 @@
 import SwiftUI
 
 
-struct SnapPager <Content: View, T: Hashable>: View {
+public struct SnapPager <Content: View, T: Hashable>: View {
     
     private let TAG: String = "SnapPager ::"
     
@@ -38,7 +38,7 @@ struct SnapPager <Content: View, T: Hashable>: View {
     
     
     
-    var body: some View {
+    public var body: some View {
         
         GeometryReader { proxy in
             
