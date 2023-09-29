@@ -22,6 +22,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     
     var content: (T) -> Content
     
+    
     @State private var realSelection: T?
     
     @State private var scrollPosition: CGPoint = .zero
@@ -143,8 +144,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
             self.contentSize = proxySize
         }
     }
-    
-    
+   
     func readPositionScrollView()
     {
         let scrollPosition = -scrollPosition.x
