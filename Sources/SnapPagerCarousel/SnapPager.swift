@@ -18,10 +18,9 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     
     var edgesOverlap: CGFloat = 0
     
+    var itemSpacing: CGFloat = 0
+    
     var content: (T) -> Content
-    
-    
-    private let itemSpacing: CGFloat = 0
     
     
     @State private var scrollPosition: CGPoint = .zero
@@ -30,9 +29,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     
     @State private var contentSize: CGSize = .zero
     
-    
     @State private var prefKeyScroller: String = "snapPager"
-    
     
     @State private var isScrolling: Bool = false
     
@@ -41,6 +38,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
                 selection: Binding<T?>,
                 currentIndex: Binding<Int>,
                 edgesOverlap: CGFloat = 0,
+                itemsMargin: CGFloat = 0,
                 content: @escaping (T) -> Content,
                 prefKeyScroller: String? = nil)
     {
@@ -48,6 +46,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
         self._selection = selection
         self._currentIndex = currentIndex
         self.edgesOverlap = edgesOverlap
+        self.itemSpacing = itemsMargin
         self.content = content
         self.prefKeyScroller = prefKeyScroller ?? "snapPager"
     }
@@ -63,13 +62,14 @@ public struct SnapPager <Content: View, T: Hashable>: View {
             {
                 ScrollView(.horizontal, showsIndicators: false)
                 {
-                    LazyHStack(spacing: itemSpacing)
+                    LazyHStack(spacing: 0)
                     {
                         ForEach(items, id: \.self) { item in
 
                             ZStack
                             {
                                 content(item)
+                                    .padding(.horizontal, itemSpacing)
                                     .frame(maxWidth: proxy.size.width - edgesOverlap*2)
                                     .containerRelativeFrame(.horizontal)
                             }
@@ -99,8 +99,6 @@ public struct SnapPager <Content: View, T: Hashable>: View {
             
         }
         .onChange(of: currentIndex) { oldValue, newValue in
-            
-            print(TAG, "currentIndex = \(currentIndex) / isScrolling = \(isScrolling)")
             
             if !isScrolling && currentIndex < items.count
             {
@@ -138,12 +136,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     {
         var margins = edgesOverlap * 2
         
-        if ((edgesOverlap * 2) > (self.contentSize.width / 2))
-        {
-            margins = ( (edgesOverlap * 2) - (self.contentSize.width / 2) ) * 2
-        }
-        
-        let widthContent = abs(self.contentSize.width - margins)//(edgesOverlap*2))
+        let widthContent = abs(self.contentSize.width - margins)
         
         let scrollPosition = abs(scrollPosition.x)
         
