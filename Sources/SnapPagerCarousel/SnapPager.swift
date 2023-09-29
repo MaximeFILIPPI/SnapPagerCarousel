@@ -108,7 +108,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
         }
         .onChange(of: selection) { oldValue, newValue in
             
-            if !isScrolling && currentIndex < items.count
+            if !isScrolling
             {
                 withAnimation {
                     
@@ -119,7 +119,10 @@ public struct SnapPager <Content: View, T: Hashable>: View {
         }
         .onChange(of: currentIndex) { oldValue, newValue in
             
-            self.selection = items[currentIndex]
+            if currentIndex < items.count
+            {
+                self.selection = items[currentIndex]
+            }
             
         }
         .onAppear {
