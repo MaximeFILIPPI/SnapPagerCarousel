@@ -1,6 +1,6 @@
 # SnapPager
 
-SnapPager is a SwiftUI 5 library for iOS 17 (and newer) that simplifies the implementation of a horizontal paging scroll view with snapping behavior. It's perfect for creating carousels, image galleries, or any other horizontal scrolling view where you want items to snap neatly into place as the user scrolls.
+SnapPager is a SwiftUI 5 library for iOS 17 (and newer) that simplifies the implementation of a horizontal paging scroll view with snapping behavior. It's perfect for creating carousels, image galleries, or any other horizontal scrolling view where you want items to snap neatly into place as the user scrolls. It is also highly performant, with lazy loading of the view making it ideal for displaying a large number of pages efficiently.
 
 ## Features
 
@@ -13,12 +13,10 @@ SnapPager is a SwiftUI 5 library for iOS 17 (and newer) that simplifies the impl
 
 ## Installation
 
-1. **Swift Package Manager:** XCode > File > Add package Dependencies... > copy/paste this repo in the search
+**Swift Package Manager:** XCode > File > Add package Dependencies... > copy/paste this repo in the search
 ```html
 https://github.com/MaximeFILIPPI/SnapPagerCarousel
 ```
-
-2. **Integrate into Your Project:** import the `SnapPagerCarousel` module into your .swift file.
 
 
 ## Usage
@@ -83,4 +81,4 @@ SnapPager is available under the MIT license. See the [LICENSE](https://github.c
 
 SnapPager is developed and maintained by [Maxime FILIPPI].
 
-If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/MaximeFILIPPI/SnapPagerCarousel/issues). We welcome your contributions and feedback!
+If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/MaximeFILIPPI/SnapPagerCarousel/issues).
