@@ -45,8 +45,8 @@ public struct SnapPager <Content: View, T: Hashable>: View {
         self._items = items
         self._selection = selection
         self._currentIndex = currentIndex
-        self.edgesOverlap = edgesOverlap
-        self.itemSpacing = itemsMargin
+        self.edgesOverlap = abs(edgesOverlap)
+        self.itemSpacing = abs(itemsMargin)
         self.content = content
         self.prefKeyScroller = prefKeyScroller ?? "snapPager"
     }
@@ -134,18 +134,28 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     
     func readPositionScrollView()
     {
-        var margins = edgesOverlap * 2
+        let scrollPosition = -scrollPosition.x
         
-        let widthContent = abs(self.contentSize.width - margins)
+        let margins = edgesOverlap * 2
         
-        let scrollPosition = abs(scrollPosition.x)
+        let screenContentWidth = self.contentSize.width
         
-        
-        if isVisible {
-            
-            if widthContent > 0
+        if isVisible
+        {
+            if screenContentWidth > 0
             {
-                let index = Int((scrollPosition + 0.5 * widthContent) / widthContent)
+                // Calculate the center of the visible area
+                let visibleCenterX = scrollPosition + screenContentWidth / 2.0
+                
+                // Calculate the effective item width considering the overlap
+                let effectiveItemWidth = screenContentWidth - margins
+                
+                // Calculate the current index based on the center of the visible area
+                let index = Int(visibleCenterX / effectiveItemWidth)
+                
+            
+                print(TAG, #function, "index = \(index)")
+                
                 
                 DispatchQueue.main.async {
                     
