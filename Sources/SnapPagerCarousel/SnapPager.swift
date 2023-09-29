@@ -40,7 +40,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     public init(items: Binding<[T]>,
                 selection: Binding<T?>,
                 currentIndex: Binding<Int>,
-                edgesOverlap: CGFloat,
+                edgesOverlap: CGFloat = 0,
                 content: @escaping (T) -> Content,
                 prefKeyScroller: String? = nil)
     {
@@ -111,8 +111,13 @@ public struct SnapPager <Content: View, T: Hashable>: View {
             
         }
         .onAppear {
+            
             self.isVisible = true
-            self.selection = items[currentIndex]
+            
+            if currentIndex >= 0 && currentIndex < items.count
+            {
+                self.selection = items[currentIndex]
+            }
         }
         .onDisappear {
             self.isVisible = false

@@ -21,7 +21,7 @@ https://github.com/MaximeFILIPPI/SnapPagerCarousel
 
 ## Usage
 
-Here's a basic example of how to use SnapPager in your SwiftUI view:
+Here's a basic example of how to integrate and use SnapPager in your SwiftUI views:
 
 ```swift
 import SwiftUI
@@ -29,18 +29,17 @@ import SnapPagerCarousel // <- Import
 
 struct ContentView: View {
     
-    @State var carouselItems: [String] = [] // <- Your items (can be anything Hashable)
-    @State var carouselSelection: String?   // <- Should match your items type
-    @State var carouselIndex: Int = 0       // <- To keep track of the page index
+    @State var carouselItems: [YourModel] = []  // <- Your items (can be anything Hashable)
+    @State var carouselSelection: YourModel?    // <- Should match your items type
+    @State var carouselIndex: Int = 0           // <- This keeps track of the page index
     
     var body: some View {
         
         SnapPager(items: $carouselItems,
                   selection: $carouselSelection,
                   currentIndex: $carouselIndex) { item in
-                  
-            // Your custom content to display for each page here
-            Text(item)
+            
+            YourCustomView(item) // <- Content display for each page here (can be replace by any of your views)
             
         }
         
