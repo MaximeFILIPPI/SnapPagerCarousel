@@ -35,6 +35,8 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     
     @State private var isScrolling: Bool = false
     
+    @State private var isSelecting: Bool = false
+    
     
     public init(items: Binding<[T]>,
                 selection: Binding<T?>,
@@ -110,16 +112,22 @@ public struct SnapPager <Content: View, T: Hashable>: View {
             
             if !isScrolling
             {
+                self.isSelecting = true
+                
                 withAnimation {
-                    
                     self.realSelection = newValue
-                    
                 }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                    self.isSelecting = false
+                }
+
             }
+            
         }
         .onChange(of: currentIndex) { oldValue, newValue in
             
-            if currentIndex < items.count
+            if currentIndex < items.count && !isSelecting
             {
                 self.selection = items[currentIndex]
             }
@@ -170,9 +178,6 @@ public struct SnapPager <Content: View, T: Hashable>: View {
                 let index = Int(visibleCenterX / effectiveItemWidth)
                 
             
-                print(TAG, #function, "index = \(index)")
-                
-                
                 DispatchQueue.main.async {
                     
                     self.isScrolling = true
@@ -199,5 +204,4 @@ struct SnapPagerPreferenceKey: PreferenceKey
     static var defaultValue: CGPoint = .zero
     static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) { }
 }
-
 
