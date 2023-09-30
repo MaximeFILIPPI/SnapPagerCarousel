@@ -12,7 +12,7 @@
 
 
 
-**SnapPager** is a SwiftUI view library for iOS 17+ that provides an easy-to-use Snap ViewPager/Carousel for your iOS app. It allows you to create a horizontally scrolling list of items with snapping behavior, making it perfect for creating your own sliding views, images gallery, product carousels, onboarding showcase, or any kind of scrollable content that needs precise item alignment and to snap neatly into place as the user scrolls.
+**SnapPager** is a lightweight SwiftUI view library for iOS 17+ that provides an easy-to-use Snap ViewPager/Carousel for your iOS app. It allows you to create a horizontally scrolling list of items with snapping behavior, making it perfect for creating your own sliding views, images gallery, product carousels, onboarding showcase, or any kind of scrollable content that needs precise item alignment and to snap neatly into place as the user scrolls.
 
 It is also highly performant, with lazy loading of the view making it ideal for displaying a infinite number of pages efficiently.
 
@@ -36,7 +36,7 @@ It is also highly performant, with lazy loading of the view making it ideal for 
 
 ✅ Horizontal scrolling with snapping behavior
 
-✅ Supports binding and controls for both selection mode: item or index
+✅ Supports binding and controls for both selection modes: item or index.
 
 ✅ Supports any kind items: struct / class / objects (note: Must be Hashable)
 
@@ -74,7 +74,7 @@ import SnapPagerCarousel // <- Import
 
 struct ContentView: View {
     
-    @State var items: [YourItemType] = []       // <- Your items (can be anything Hashable)
+    @State var items: [YourItemType] = []       // <- Your items (should be Hashable)
     @State var selectedItem: YourItemType?      // <- Should match your items type
     @State var selectedItemIndex: Int = 0       // <- This keeps track of the page index
     
@@ -108,6 +108,7 @@ Example if you want to go to a certain position
 
 
 ```swift
+// Function to navigate to the next page
 func goToNextPage()
 {
     self.selectedItemIndex += 1
@@ -117,6 +118,7 @@ func goToNextPage()
 or if you prefer to just change the item
 
 ```swift
+// Function to navigate to the next item
 func goToNextItem()
 {
     self.selectedItem = items[selectedItemIndex+1]
@@ -132,11 +134,13 @@ You can slightly customize the appearance of your pager by adjusting the `edgesO
 SnapPager(items: $items,
           selection: $selectedItem,
           currentIndex: $selectedItemIndex,
-          edgesOverlap: 16, // Adjust as needed
-          itemsMargin: 8    // Adjust as needed
+          edgesOverlap: 16, // Adjust as needed (controls overlap between pages)
+          itemsMargin: 8    // Adjust as needed (controls margin between pages)
           ) { index, item in
+          
     // Your content for each page here
     CustomView(item)
+    
 }
 ```
 
@@ -204,6 +208,91 @@ struct ExampleMapView: View {
     
 }
 ```
+
+
+Another example for a fullscreen ViewPager experience with custom PagerIndicator
+
+```swift
+import SwiftUI
+import SnapPagerCarousel
+
+struct ExampleOnBoardingView: View {
+    
+    @State var pages: [OnBoarding] = [ ]
+    
+    @State var pageSelected: OnBoarding?
+    @State var pageIndex: Int = 0
+    
+    var body: some View {
+        
+        ZStack(alignment:.bottom)
+        {
+            // Pager Mode
+            SnapPager(items: $pages,
+                      selection: $pageSelected,
+                      currentIndex: $pageIndex) { index, page in
+                
+                OnBoardingPageView(page: page, position: index)
+            }
+            
+            // Indicator at the bottom
+            PagerIndicatorView(pages: $pages,
+                               pageSelected: $pageSelected)
+            
+        }
+        .background(Color.black)
+        .ignoresSafeArea()
+    }
+    
+}
+
+
+// -------------------------------------------------------------
+
+struct PagerIndicatorView: View {
+    
+    @Binding var pages: [OnBoarding]
+    
+    @Binding var pageSelected: OnBoarding?
+    
+    
+    var body: some View
+    {
+        // Custom pager Indicator
+        HStack
+        {
+            ForEach(pages, id: \.self) { page in
+                
+                Button(role: .none) {
+                    
+                    self.selectPage(page)
+                    
+                } label: {
+                    
+                    Capsule()
+                        .fill(.white)
+                        .opacity(page == pageSelected ? 0.5 : 0.25)
+                        .frame(width: page == pageSelected ? 22 : 8, height: 8)
+                }
+                
+            }
+            
+        }
+        .padding(.bottom, 48)
+    }
+    
+    
+    func selectPage(_ page: OnBoarding)
+    {
+        withAnimation {
+            self.pageSelected = page
+        }
+    }
+    
+}
+```
+
+
 
 ## License
 
