@@ -1,5 +1,11 @@
 # SnapPager
 
+<p align="center">
+    <img src="https://img.shields.io/badge/iOS-17%2B-orange?style=flat&color=orange" alt="Platforms" />
+    <img src="https://img.shields.io/badge/SwiftUI-5%2B-blue?style=flat&color=blue&link=https%3A%2F%2Fdeveloper.apple.com%2Fxcode%2Fswiftui%2F" />
+    <a href="https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
+</p>
+
 **SnapPager** is a SwiftUI view library for iOS 17+ that provides an easy-to-use Snap ViewPager/Carousel for your iOS app. It allows you to create a horizontally scrolling list of items with snapping behavior, making it perfect for creating your own sliding views, images gallery, product carousels, onboarding showcase, or any kind of scrollable content that needs precise item alignment and to snap neatly into place as the user scrolls.
 
 It is also highly performant, with lazy loading of the view making it ideal for displaying a infinite number of pages efficiently.
