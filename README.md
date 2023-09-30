@@ -8,11 +8,17 @@ It is also highly performant, with lazy loading of the view making it ideal for 
 ## Features
 
 ✅ Easy-to-use
+
 ✅ Highly customizable (use your own custom views)
+
 ✅ Horizontal scrolling with snapping behavior
+
 ✅ Supports binding for item selection and index
+
 ✅ Supports any kind of hashable struct / class / objects as items
+
 ✅ Automatically handles user interactions
+
 ⚠️ Experimental: overlap and spacing between items 
 
 
@@ -46,8 +52,8 @@ import SnapPagerCarousel // <- Import
 
 struct ContentView: View {
     
-    @State var items: [YourModel] = []  // <- Your items (can be anything Hashable)
-    @State var selectedItem: YourModel?    // <- Should match your items type
+    @State var items: [YourItemType] = []   // <- Your items (can be anything Hashable)
+    @State var selectedItem: YourItemType?  // <- Should match your items type
     @State var indexItem: Int = 0           // <- This keeps track of the page index
     
     var body: some View {
@@ -69,7 +75,7 @@ struct ContentView: View {
 
 In this example, `carouselItems` is an array of String that you want to display in the pager. 
 The `SnapPager` view automatically handles the horizontal paging and snapping behavior for you. 
-You can customize the appearance of each page by providing a content closure.
+You can customize the appearance of each page by providing your own view inside the content closure.
 
 
 ## Customization
@@ -80,7 +86,8 @@ You can customize the appearance of your pager by adjusting the `edgesOverlap` p
 SnapPager(items: $carouselItems,
           selection: $carouselSelection,
           currentIndex: $carouselIndex,
-          edgesOverlap: 60 // Customize the overlap
+          edgesOverlap: 16, // Adjust as needed
+          itemsMargin: 8    // Adjust as needed
           ) { item in
     // Your content for each page here
     CustomView(item)
