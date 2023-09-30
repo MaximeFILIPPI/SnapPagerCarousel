@@ -102,7 +102,7 @@ The content closure returns an `index` and an `item` for your custom view (the o
 
 The `SnapPager` view automatically handles the horizontal paging and snapping behavior. 
 If you wish to change the selected item and go to another one it is really easy.
-You just have to set a new value for selectedItem or selectedItemIndex and it will automatically scroll to the position of the item wanted.
+You just have to set a new value for `selectedItem` or `selectedItemIndex` and it will automatically scroll to the position of the item wanted.
 
 Example if you want to go to a certain position
 
