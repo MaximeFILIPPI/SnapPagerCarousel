@@ -19,6 +19,8 @@ It is also highly performant, with lazy loading of the view making it ideal for 
 
 
 ![screenshot](https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/Simulator%20Screen%20Recording%20-%20iPhone%2015%20Pro%20-%202023-09-30%20at%2023.55.03.gif?raw=true)
+![screenshot](https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/Simulator%20Screen%20Recording%20-%20iPhone%2015%20Pro%20-%202023-09-30%20at%2023.55.03.gif?raw=true)
+
 
 
 
@@ -77,7 +79,7 @@ struct ContentView: View {
         
         SnapPager(items: $items,
                   selection: $selectedItem,
-                  currentIndex: $indexItem) { item in
+                  currentIndex: $indexItem) { index, item in
             
             YourCustomView(item) // <- Content display for each page here (can be replace by any of your views)
             
@@ -105,7 +107,7 @@ SnapPager(items: $carouselItems,
           currentIndex: $carouselIndex,
           edgesOverlap: 16, // Adjust as needed
           itemsMargin: 8    // Adjust as needed
-          ) { item in
+          ) { index, item in
     // Your content for each page here
     CustomView(item)
 }

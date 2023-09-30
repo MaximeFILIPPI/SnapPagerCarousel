@@ -68,7 +68,7 @@ struct ExampleMapView: View {
                       selection: $selectedPlace,
                       currentIndex: $indexPlace,
                       edgesOverlap: 40,
-                      itemsMargin: 10) { place in
+                      itemsMargin: 10) { index, place in
              
                 PlaceCardView(place: place)
                 
