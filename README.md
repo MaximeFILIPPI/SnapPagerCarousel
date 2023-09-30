@@ -28,8 +28,6 @@ It is also highly performant, with lazy loading of the view making it ideal for 
 
 ✅ Easy-to-use
 
-✅ Super Lightweight
-
 ✅ 100% SwiftUI
 
 ✅ Automatically handles user interactions
