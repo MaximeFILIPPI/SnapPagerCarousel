@@ -20,7 +20,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
     
     var itemSpacing: CGFloat = 0
     
-    var content: (T) -> Content
+    var content: (Int, T) -> Content
     
     
     @State private var realSelection: T?
@@ -43,7 +43,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
                 currentIndex: Binding<Int>,
                 edgesOverlap: CGFloat = 0,
                 itemsMargin: CGFloat = 0,
-                content: @escaping (T) -> Content,
+                content: @escaping (Int, T) -> Content,
                 prefKeyScroller: String? = nil)
     {
         self._items = items
@@ -77,7 +77,7 @@ public struct SnapPager <Content: View, T: Hashable>: View {
 
                             ZStack
                             {
-                                content(item)
+                                content(index, item)
                                     .padding(.horizontal, itemSpacing)
                                     .frame(maxWidth: proxy.size.width - edgesOverlap*2)
                                     .containerRelativeFrame(.horizontal)
