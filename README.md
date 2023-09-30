@@ -1,22 +1,39 @@
 # SnapPager
 
-SnapPager is a SwiftUI 5 library for iOS 17 (and newer) that simplifies the implementation of a horizontal paging scroll view with snapping behavior. It's perfect for creating carousels, image galleries, or any other horizontal scrolling view where you want items to snap neatly into place as the user scrolls. It is also highly performant, with lazy loading of the view making it ideal for displaying a large number of pages efficiently.
+**SnapPager** is a SwiftUI view library for iOS 17+ that provides an easy-to-use Snap ViewPager/Carousel for your iOS app. It allows you to create a horizontally scrolling list of items with snapping behavior, making it perfect for creating your own sliding views, images gallery, product carousels, onboarding showcase, or any kind of scrollable content that needs precise item alignment and to snap neatly into place as the user scrolls.
+
+It is also highly performant, with lazy loading of the view making it ideal for displaying a large number of pages efficiently.
+
 
 ## Features
 
-- **Easy Integration:** SnapPager can be easily integrated into your SwiftUI project, allowing you to create horizontal pagers with just a few lines of code.
+✅ Easy-to-use
+✅ Highly customizable (use your own custom views)
+✅ Horizontal scrolling with snapping behavior
+✅ Supports binding for item selection and index
+✅ Supports any kind of hashable struct / class / objects as items
+✅ Automatically handles user interactions
+⚠️ Experimental: overlap and spacing between items 
 
-- **Customizable:** You can customize the spacing between items and the amount of overlap between adjacent items.
 
-- **Snap Behavior:** SnapPager automatically snaps items to the center, creating a smooth and intuitive scrolling experience.
+## Requirements
+
+- iOS 17.0+
+- SwiftUI 5.0+
+
 
 
 ## Installation
 
-**Swift Package Manager:** XCode > File > Add package Dependencies... > copy/paste this repo in the search
+**Swift Package Manager:**
+
+'Xcode' > 'File' > 'Add Package Dependency...'  
+
+Enter the following URL of the repository into the search: 
 ```html
 https://github.com/MaximeFILIPPI/SnapPagerCarousel
 ```
+Follow the prompts to complete the installation.
 
 
 ## Usage
@@ -29,15 +46,15 @@ import SnapPagerCarousel // <- Import
 
 struct ContentView: View {
     
-    @State var carouselItems: [YourModel] = []  // <- Your items (can be anything Hashable)
-    @State var carouselSelection: YourModel?    // <- Should match your items type
-    @State var carouselIndex: Int = 0           // <- This keeps track of the page index
+    @State var items: [YourModel] = []  // <- Your items (can be anything Hashable)
+    @State var selectedItem: YourModel?    // <- Should match your items type
+    @State var indexItem: Int = 0           // <- This keeps track of the page index
     
     var body: some View {
         
-        SnapPager(items: $carouselItems,
-                  selection: $carouselSelection,
-                  currentIndex: $carouselIndex) { item in
+        SnapPager(items: $items,
+                  selection: $selectedItem,
+                  currentIndex: $indexItem) { item in
             
             YourCustomView(item) // <- Content display for each page here (can be replace by any of your views)
             
@@ -78,6 +95,6 @@ SnapPager is available under the MIT license. See the [LICENSE](https://github.c
 
 ## Credits
 
-SnapPager is developed and maintained by [Maxime FILIPPI].
+**SnapPager** is developed and maintained by [Maxime FILIPPI].
 
 If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/MaximeFILIPPI/SnapPagerCarousel/issues).
