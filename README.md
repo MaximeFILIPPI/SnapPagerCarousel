@@ -33,9 +33,9 @@ It is also highly performant, with lazy loading of the view making it ideal for 
 
 **Swift Package Manager:**
 
-'Xcode' > 'File' > 'Add Package Dependency...'  
+`XCode` > `File` > `Add Package Dependency...`  
 
-Enter the following URL of the repository into the search: 
+Enter the following `URL` of the repository into the search: 
 ```html
 https://github.com/MaximeFILIPPI/SnapPagerCarousel
 ```
@@ -73,7 +73,7 @@ struct ContentView: View {
 }
 ```
 
-In this example, `carouselItems` is an array of String that you want to display in the pager. 
+In this example, `items` is an array of custom object / struct / class that you want to use to display some infos in the pager. 
 The `SnapPager` view automatically handles the horizontal paging and snapping behavior for you. 
 You can customize the appearance of each page by providing your own view inside the content closure.
 
