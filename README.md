@@ -1,4 +1,4 @@
-# SnapPager
+
 
 <p align="center">
   <img src="https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/snap_carousel_banner.png" />
@@ -10,9 +10,9 @@
     <a href="https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
 </p>
 
+# SnapPager
 
-
-**SnapPager** is a lightweight SwiftUI View for iOS 17 (and newer) that provides you an easy-to-use Pager / Carousel like TabView but better, faster, stronger 💪. 
+A lightweight SwiftUI View for iOS 17 (and newer) that provides you an easy-to-use Pager / Carousel like TabView but better, faster, stronger 💪. 
 
 It allows you to create a horizontally scrolling list of items and custom views with centered snapping behavior, making it perfect for creating your own sliding views, images gallery, product carousels, onboarding, showcase, etc...
 
