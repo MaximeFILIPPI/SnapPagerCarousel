@@ -1,7 +1,7 @@
 # SnapPager
 
 <p align="center">
-  <img src="https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/snap_pager_logo.png" height=182 width=182/>
+  <img src="https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/snap_carousel_banner.png" />
 </p>
 
 <p align="center">
