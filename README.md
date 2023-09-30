@@ -1,8 +1,12 @@
 # SnapPager
 
 <p align="center">
+  <img src="https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/snap_pager_logo.png" height=58 width=182/>
+</p>
+
+<p align="center">
     <img src="https://img.shields.io/badge/SwiftUI-5%2B-blue?style=flat&color=%2326c281%20&link=https%3A%2F%2Fdeveloper.apple.com%2Fxcode%2Fswiftui%2F" />
-    <img src="https://img.shields.io/badge/iOS-17%2B-blue?style=flat&color=%23f15a22&link=https%3A%2F%2Fdeveloper.apple.com%2Fios%2F" alt="Platforms" />
+    <img src="https://img.shields.io/badge/iOS-17%2B-blue?style=flat&color=%239f5afd&link=https%3A%2F%2Fdeveloper.apple.com%2Fios%2F" alt="Platforms" />
     <a href="https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
 </p>
 
