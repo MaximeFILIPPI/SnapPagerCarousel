@@ -28,15 +28,18 @@ It is also highly performant, with lazy loading of the view making it ideal for 
 
 ✅ Easy-to-use
 
-✅ Highly customizable (use your own custom views)
+✅ Super Lightweight
+
+✅ 100% SwiftUI
+
+✅ Automatically handles user interactions
 
 ✅ Horizontal scrolling with snapping behavior
 
-✅ Supports binding for item selection and index
+✅ Supports binding and controls for both selection mode: item or index
 
-✅ Supports any kind of hashable struct / class / objects as items
+✅ Supports any kind items: struct / class / objects (note: Must be Hashable)
 
-✅ Automatically handles user interactions
 
 ⚠️ Experimental: overlap and spacing between items 
 
@@ -61,9 +64,9 @@ https://github.com/MaximeFILIPPI/SnapPagerCarousel
 Follow the prompts to complete the installation.
 
 
-## Usage
+## Basic Usage
 
-Here is a basic example of how to integrate and use SnapPager in your SwiftUI views:
+Here is an example of how to integrate and use SnapPager in your SwiftUI views:
 
 ```swift
 import SwiftUI
@@ -71,40 +74,64 @@ import SnapPagerCarousel // <- Import
 
 struct ContentView: View {
     
-    @State var items: [YourItemType] = []   // <- Your items (can be anything Hashable)
-    @State var selectedItem: YourItemType?  // <- Should match your items type
-    @State var indexItem: Int = 0           // <- This keeps track of the page index
+    @State var items: [YourItemType] = []       // <- Your items (can be anything Hashable)
+    @State var selectedItem: YourItemType?      // <- Should match your items type
+    @State var selectedItemIndex: Int = 0       // <- This keeps track of the page index
     
     var body: some View {
         
         SnapPager(items: $items,
                   selection: $selectedItem,
-                  currentIndex: $indexItem) { index, item in
+                  currentIndex: $selectedItemIndex) { index, item in
             
-            YourCustomView(item) // <- Content display for each page here (can be replace by any of your views)
+            YourCustomView(item) // <- Your content to display for each page here
             
         }
         
     }
     
-    // Load your items into carouselItems
-    
 }
 ```
 
 In this example, `items` is an array of custom object / struct / class that you want to use to display some infos in the pager. 
-The `SnapPager` view automatically handles the horizontal paging and snapping behavior for you. 
 You can customize the appearance of each page by providing your own view inside the content closure.
+The content closure returns an `index` and an `item` for your custom view (the ones corresponding to the page to load).
 
 
-## Customization
+## How To Programmatically?
 
-You can customize the appearance of your pager by adjusting the `edgesOverlap` property that controls how much adjacent your pages should overlap when snapping.
+The `SnapPager` view automatically handles the horizontal paging and snapping behavior. 
+If you wish to change the selected item and go to another one it is really easy.
+You just have to set a new value for selectedItem or selectedItemIndex and it will automatically scroll to the position of the item wanted.
+
+Example if you want to go to a certain position
+
 
 ```swift
-SnapPager(items: $carouselItems,
-          selection: $carouselSelection,
-          currentIndex: $carouselIndex,
+func goToNextPage()
+{
+    self.selectedItemIndex += 1
+}
+```
+
+or if you prefer to just change the item
+
+```swift
+func goToNextItem()
+{
+    self.selectedItem = items[selectedItemIndex+1]
+}
+```
+
+
+## Customization (Experimental)
+
+You can slightly customize the appearance of your pager by adjusting the `edgesOverlap` and `itemsMargin` properties that controls how much adjacent your pages should overlap when snapping. It gives a kind of carousel vibes BUT be careful to not set the edge overlap too high or the native scrollview used by `SnapPager` will have hard time to find the correct item to scroll to if you programmatically change the value of the current item or index.
+
+```swift
+SnapPager(items: $items,
+          selection: $selectedItem,
+          currentIndex: $selectedItemIndex,
           edgesOverlap: 16, // Adjust as needed
           itemsMargin: 8    // Adjust as needed
           ) { index, item in
@@ -113,6 +140,70 @@ SnapPager(items: $carouselItems,
 }
 ```
 
+
+## Examples
+
+Please refer to the directory [EXAMPLES](https://github.com/MaximeFILIPPI/SnapPagerCarousel/tree/main/Examples) for fully detailed code on how to achieve certain effects.
+
+Here is how simple it is to bind the `SnapPager` to a `Map` (from `MapKit`); You just have to use the same `@State` variable for the `places` and `selectedPlace`:
+
+```swift
+import SwiftUI
+import MapKit
+import SnapPagerCarousel
+
+struct ExampleMapView: View {
+
+    @State private var cameraPosition: MapCameraPosition = .automatic
+    
+    // Same items for Map AND SnapCarousel
+    @State var places: [Place] = []
+    
+    // Same selected item for Map AND SnapPager
+    @State var selectedPlace: Place?
+    
+    // Index of selected place (if needed)
+    @State var indexPlace: Int = 0
+    
+    
+    var body: some View {
+        
+        ZStack(alignment: .bottom)
+        {
+            // Map SwiftUI
+            Map(position: $cameraPosition, selection: $selectedPlace) {
+                
+                ForEach(places, id: \.self) { place in
+                    
+                    Marker(place.name,
+                           systemImage: place.icon,
+                           coordinate: CLLocationCoordinate2D(latitude: place.latitude,
+                                                              longitude: place.longitude))
+                    .tint(place.color)
+                    .tag(place)
+                    
+                }
+                
+            }.mapStyle(.standard(pointsOfInterest: .excludingAll))
+            
+            
+            // Bottom Cards SlideShow
+            SnapPager(items: $places,
+                      selection: $selectedPlace,
+                      currentIndex: $indexPlace,
+                      edgesOverlap: 40,
+                      itemsMargin: 10) { index, place in
+             
+                PlaceCardView(place: place)
+                
+            }.frame(maxHeight: 100)
+            
+        }
+        
+    }
+    
+}
+```
 
 ## License
 
