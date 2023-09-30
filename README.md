@@ -128,7 +128,9 @@ func goToNextItem()
 
 ## Customization (Experimental)
 
-You can slightly customize the appearance of your pager by adjusting the `edgesOverlap` and `itemsMargin` properties that controls how much adjacent your pages should overlap when snapping. It gives a kind of carousel-like vibes to your pager. careful to not set the edge overlap too high or the native scrollview used by `SnapPager` will have hard time to find the correct item to scroll to if you programmatically change the value of the current item or index.
+You can slightly customize the appearance of your pager by adjusting the `edgesOverlap` and `itemsMargin` properties that controls how much adjacent your pages should overlap when snapping. 
+
+It gives a kind of carousel-like vibes to your pager (cf examples-map).
 
 ```swift
 SnapPager(items: $items,
