@@ -18,7 +18,7 @@ It is also highly performant, with lazy loading of the view making it ideal for 
 
 
 
-![screenshot](https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/Simulator%20Screen%20Recording%20-%20iPhone%2015%20Pro%20-%202023-09-30%20at%2023.55.03.gif?raw=true)
+![screenshot](https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/Simulator%20Screen%20Recording%20-%20iPhone%2015%20Pro%20-%202023-10-01%20at%2003.42.31.gif)
 ![screenshot](https://github.com/MaximeFILIPPI/SnapPagerCarousel/blob/main/Images/Simulator%20Screen%20Recording%20-%20iPhone%2015%20Pro%20-%202023-09-30%20at%2023.55.03.gif?raw=true)
 
 
