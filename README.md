@@ -147,7 +147,7 @@ SnapPager(items: $items,
 ```
 
 > **Note**
-> Be careful not to set the `edgesOverlap` or `itemsMargin` too high as the native SwiftUI scrollview (used by `SnapPager`) seems to have issue determining the correct centered item and will lose track of the positions of the others.
+> Be careful not to set the `edgesOverlap` or `itemsMargin` too high as the native SwiftUI scrollview (used by `SnapPager`) seems to have issue determining the correct item selected & will lose track of the other ones.
 
 
 ## Examples
