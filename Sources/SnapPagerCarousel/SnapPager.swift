@@ -129,7 +129,9 @@ public struct SnapPager <Content: View, T: Hashable>: View {
             
             if currentIndex < items.count && !isSelecting
             {
-                self.selection = items[currentIndex]
+                withAnimation {
+                    self.selection = items[currentIndex]
+                }
             }
             
         }
