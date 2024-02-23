@@ -82,7 +82,8 @@ public struct SnapPager <Content: View, T: Hashable>: View {
                                     .frame(maxWidth: proxy.size.width - edgesOverlap*2)
                                     .containerRelativeFrame(.horizontal)
                             }
-                            .id(item)
+                            //.id(item)
+                            .id(index)
                             .clipped()
                             .frame(width: proxy.size.width - edgesOverlap*2, alignment: .center)
                             
